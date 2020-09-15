@@ -50,5 +50,33 @@ router.delete('/:i', (req, res) => {
 })
 
 
+//EDIT ROUTE
+router.get('/:i/edit', (req, res) => {
+
+    db.Movie.findById(req.params.i, (err, oneRedditorFromDB) => {
+        if(err){
+            console.log(err)
+        } else{
+            res.render('edit.ejs', {
+                oneRedditor: oneRedditorFromDB,
+            })
+        }
+    })
+})
+
+// UPDATE ROUTE
+router.put('/:i', (req, res) => {
+
+    db.Movie.findByIdAndUpdate(req.params.i, req.body, {new: true}, (err, updatedRedditor) => {
+        if(err){
+            console.log(err)
+        } else {
+            console.log(updatedRedditor);
+            res.redirect(`/redditor/${req.params.i}`);
+        }
+    })
+})
+
+
 
 module.exports = router;
