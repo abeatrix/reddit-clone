@@ -6,7 +6,7 @@ const redditorSchema = new mongoose.Schema(
         username: {type: String, required: [true, 'you must provide a username.'] },
     },
     {
-        karma: {type: Number},
+        karma: {type: Number, default: 0 },
     },
     {
         timestamps: true, //add a createdAt property that's automatic a date and updateAt
@@ -14,4 +14,6 @@ const redditorSchema = new mongoose.Schema(
     }
 );
 
-const Redditor = mongoose.model('Redditor', authorSchema);
+const Redditor = mongoose.model('Redditor', redditorSchema);
+
+module.exports = Redditor;
