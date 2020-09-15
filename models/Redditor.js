@@ -4,13 +4,7 @@ const mongoose = require('mongoose');
 const redditorSchema = new mongoose.Schema(
     {
         username: {type: String, required: [true, 'you must provide a username.'] },
-    },
-    {
-        karma: {type: Number, default: 0 },
-    },
-    {
-        timestamps: true, //add a createdAt property that's automatic a date and updateAt
-        // createAt: 'joined' your can rename these properties
+        karma: {type: Number, default: 0},
     }
 );
 

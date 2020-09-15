@@ -10,6 +10,7 @@ router.get('/newuser',(req, res) => {
 
 // CREATE ROUTE
 router.post('/', (req, res) => {
+
     db.Redditor.create(req.body, (err, createdRedditor) => {
         if(err){
             console.log(err);
@@ -19,6 +20,24 @@ router.post('/', (req, res) => {
     })
 
 })
+
+// Show Route
+router.get('/:redditorIndex', (req, res) => {
+    // By default express will look inside the views directory when .render() is called
+
+    db.Redditor.findById(req.params.redditorIndex, (err, oneRedditorFromDB) => {
+        if(err){
+            console.log(err);
+        }else{
+            res.render('show.ejs', {
+                oneRedditor: oneRedditorFromDB,
+        
+            });
+        }
+    })
+
+});
+
 
 // index view /authors
 router.get("/", function (req, res) {
@@ -39,7 +58,7 @@ router.get("/", function (req, res) {
 //DELETE ROUTE
 router.delete('/:i', (req, res) => {
 
-    db.Movie.findByIdAndDelete(req.params.i, (err, deletedRedditor) => {
+    db.Redditor.findByIdAndDelete(req.params.i, (err, deletedRedditor) => {
         if(err){
             console.log(err)
         } else {
@@ -53,7 +72,7 @@ router.delete('/:i', (req, res) => {
 //EDIT ROUTE
 router.get('/:i/edit', (req, res) => {
 
-    db.Movie.findById(req.params.i, (err, oneRedditorFromDB) => {
+    db.Redditor.findById(req.params.i, (err, oneRedditorFromDB) => {
         if(err){
             console.log(err)
         } else{
@@ -67,7 +86,7 @@ router.get('/:i/edit', (req, res) => {
 // UPDATE ROUTE
 router.put('/:i', (req, res) => {
 
-    db.Movie.findByIdAndUpdate(req.params.i, req.body, {new: true}, (err, updatedRedditor) => {
+    db.Redditor.findByIdAndUpdate(req.params.i, req.body, {new: true}, (err, updatedRedditor) => {
         if(err){
             console.log(err)
         } else {

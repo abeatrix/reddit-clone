@@ -19,7 +19,7 @@ app.use((req, res, next) =>{
 
 app.set('view engine', 'ejs')
 
-app.use('/reddit', controllers.redditor)
+app.use('/redditor', controllers.redditor);
 
 
 
