@@ -9,7 +9,27 @@
     <%- include('../partials/postStyles') %>
 </head>
 <body>
-    <h1><%= oneRedditor.username %></h1>
-    <p>Karma: <%= oneRedditor.karma %></p>
+
+    <%- include('../partials/nav') %>
+
+    <div class='submitPost'>
+        <ul>
+                <li>
+                    <h1><%= oneRedditor.username %></h1>
+                </li>
+                <li>
+                    <p>Email: <%= oneRedditor.email %></p>
+                </li>
+                <li>
+                    <p>Karma: <%= oneRedditor.karma %></p>
+                </li>
+                <li>
+                    <p>Cakeday: <%= oneRedditor.createdAt %></p>
+                </li>
+        </ul>
+    </div>
+
+    <%- include('../partials/footer') %>
+
 </body>
 </html>

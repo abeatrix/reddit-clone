@@ -4,9 +4,13 @@ const mongoose = require('mongoose');
 const redditorSchema = new mongoose.Schema(
     {
         username: {type: String, required: [true, 'you must provide a username.'] },
-        password: {type: String},
-        email: {type: String},
+        password: {type: String, required: true},
+        email: {type: String, required: true},
         karma: {type: Number, default: 0},
+    },
+    {
+        timestamps: true,
+        createdAt: "signupAt"
     }
 );
 

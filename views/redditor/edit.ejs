@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="icon" type="image/png" href="https://i.ibb.co/RCV0S6R/shark.gif" />
-    <title>Front Page</title>
+    <title>Account Edit</title>
     <%- include('../partials/postStyles') %>
 </head>
 <body>
-    <h1>Account Edit</h1>
 
-    <form action="/redditor/<%= oneRedditor._id %>?_method=PUT" method="POST">
-        Name: <input type="text" name="username" value="<%= oneRedditor.name %>"><br>
-        <input type="submit" value="submit Changes">
+    <%- include('../partials/nav') %>
+
+    <div class='submitPost'>
+        <form action="/redditor/<%= oneRedditor._id %>?_method=PUT" method="POST">
+            Update your Username here: <input type="text" name="username" value="<%= oneRedditor.name %>">
+        <input type="submit" value="UPDATE">
     </form>
+    </div>
+
+    <%- include('../partials/footer') %>
+
 </body>
 </html>
