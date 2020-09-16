@@ -20,7 +20,7 @@
                         <%= redditor[i].username %>
                     </a>
                     <form action="/redditor/<%= redditor[i]._id %>/edit">
-                        <button type="submit" class="btn btn-link btn-sm pull-left">EDIT</button>
+                        <button type="submit" class="btn btn-link btn-sm pull-left">UPDATE</button>
                     </form>
                     <form action="/redditor/<%= redditor[i]._id %>?_method=DELETE" method="POST">
                         <button type="submit" class="btn btn-link btn-sm pull-left">DELETE</button>

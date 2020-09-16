@@ -5,7 +5,16 @@ const db = require('../models');
 
 // NEW ROUTE
 router.get('/newpost',(req, res) => {
-    res.render('posts/new');
+    db.Redditor.find({}, (err, foundRedditors) => {
+        if (err) {
+            return res.send(err);
+        };
+
+        const context = {
+            redditors: foundRedditors,
+        };
+        res.render('posts/new');
+    });
 });
 
 // CREATE ROUTE
@@ -14,11 +23,21 @@ router.post('/', (req, res) => {
     db.Post.create(req.body, (err, createdPost) => {
         if(err){
             console.log(err);
-        } else {
-            res.redirect('/posts');
+            return res.send(err);
         }
-    })
 
+        db.Redditor.findById(req.body.redditor, (err, foundRedditor) => {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+
+            foundRedditor.posts.push(createdPost);
+            foundRedditor.save();
+
+            res.redirect('/posts');
+        });
+    });
 })
 
 // Show Route
@@ -61,27 +80,23 @@ router.delete('/:i', (req, res) => {
     db.Post.findByIdAndDelete(req.params.i, (err, deletedPost) => {
         if(err){
             console.log(err)
-        } else {
-            console.log(deletedPost);
+            return res.send(err);
+        }
+        db.Redditor.findById(deletedPost.redditor, (err, foundRedditor) => {
+            if(err){
+                console.log(err);
+                return res.send(err);
+            }
+
+            foundRedditor.posts.remove(deletedPost);
+            foundRedditor.save();
+
             res.redirect('/posts');
-        }
-    })
-})
+        })
+    });
+});
 
 
-//EDIT ROUTE
-router.get('/:i/edit', (req, res) => {
-
-    db.Post.findById(req.params.i, (err, onePostFromDB) => {
-        if(err){
-            console.log(err)
-        } else{
-            res.render('posts/edit.ejs', {
-                onePost: onePostFromDB,
-            })
-        }
-    })
-})
 
 // UPDATE ROUTE
 router.put('/:i', (req, res) => {
@@ -96,6 +111,19 @@ router.put('/:i', (req, res) => {
     })
 })
 
+//EDIT ROUTE
+router.get('/:i/edit', (req, res) => {
+
+    db.Post.findById(req.params.i, (err, onePostFromDB) => {
+        if(err){
+            console.log(err)
+        } else{
+            res.render('posts/edit.ejs', {
+                onePost: onePostFromDB,
+            })
+        }
+    })
+})
 
 
 module.exports = router;

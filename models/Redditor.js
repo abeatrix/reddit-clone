@@ -7,6 +7,12 @@ const redditorSchema = new mongoose.Schema(
         password: {type: String, required: true},
         email: {type: String, required: true},
         karma: {type: Number, default: 0},
+        posts: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Post',
+            },
+        ],
     },
     {
         timestamps: true,

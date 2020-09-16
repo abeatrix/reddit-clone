@@ -18,38 +18,35 @@ router.post('/', (req, res) => {
             res.redirect('/redditor');
         }
     })
-
 })
 
 // Show Route
-router.get('/:redditorIndex', (req, res) => {
+router.get('/:i', (req, res) => {
     // By default express will look inside the views directory when .render() is called
 
-    db.Redditor.findById(req.params.redditorIndex, (err, oneRedditorFromDB) => {
+    db.Redditor.findById(req.params.i).populate('posts').exec((err, oneRedditorFromDB) => {
         if(err){
             console.log(err);
-        }else{
-            res.render('redditor/show', {
-                oneRedditor: oneRedditorFromDB,
-        
-            });
+            return res.send(err);
         }
-    })
-
+        const context = {oneRedditor: oneRedditorFromDB};
+            res.render('redditor/show', context);
+    });
 });
+
 
 
 // index view /authors
 router.get("/", function (req, res) {
     // mongoose code
     db.Redditor.find({}, function (error, foundRedditor) {
-      if (error) return res.send(error);
+        if (error) return res.send(error);
 
-      const context = {
+    const context = {
         redditor: foundRedditor,
-      };
+    };
 
-      res.render("redditor/index", context);
+    res.render("redditor/index", context);
     });
 });
 
@@ -61,12 +58,17 @@ router.delete('/:i', (req, res) => {
     db.Redditor.findByIdAndDelete(req.params.i, (err, deletedRedditor) => {
         if(err){
             console.log(err)
-        } else {
-            console.log(deletedRedditor);
-            res.redirect('/redditor');
+            return res.send(err)
         }
-    })
-})
+        db.Post.remove({redditor: deletedRedditor._id}, (err, removedPosts) => {
+            if(err){
+                console.log(err);
+                return res.send(err);
+            }
+            res.redirect('/posts')
+        });
+    });
+});
 
 
 //EDIT ROUTE
