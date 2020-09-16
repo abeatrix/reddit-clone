@@ -1,3 +1,4 @@
 module.exports = {
-    redditor: require('./redditor')
+    redditor: require('./redditor'),
+    posts: require("./post")
 }

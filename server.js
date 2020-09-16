@@ -21,6 +21,8 @@ app.set('view engine', 'ejs')
 
 app.use('/redditor', controllers.redditor);
 
+app.use('/posts', controllers.posts);
+
 
 
 // SERVER LISTENER
