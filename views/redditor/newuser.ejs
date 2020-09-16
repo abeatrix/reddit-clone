@@ -9,12 +9,24 @@
     <%- include('../partials/postStyles') %>
 </head>
 <body>
-    <h1>Create an Account</h1>
 
-    <form action="/redditor" method="POST">
-        User Name: <input type='text' name='username' /><br>
-        <input type='submit' value ='Create User' />
-    </form>
+    <%- include('../partials/nav') %>
+
+    <div class='submitPost'>
+        <h3>Create an Account</h3> <br>
+        <form action="/redditor" method="POST">
+            <div class="form-group">
+                Username: <input type='text' name='username' />
+                password: <input type='password' name='password' />
+                Email: <input type='email' name='email' />
+            </div>
+            <div class="text-left">
+                    <button type="submit" class="btn btn-primary">Create User</button>
+            </div>
+        </form>
+    </div>
+
+    <%- include('../partials/footer') %>
 
 </body>
 </html>

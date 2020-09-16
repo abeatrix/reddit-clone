@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const redditorSchema = new mongoose.Schema(
     {
         username: {type: String, required: [true, 'you must provide a username.'] },
+        password: {type: String},
+        email: {type: String},
         karma: {type: Number, default: 0},
     }
 );
