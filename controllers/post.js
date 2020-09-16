@@ -13,7 +13,7 @@ router.get('/newpost',(req, res) => {
         const context = {
             redditors: foundRedditors,
         };
-        res.render('posts/new');
+        res.render('posts/new', context);
     });
 });
 

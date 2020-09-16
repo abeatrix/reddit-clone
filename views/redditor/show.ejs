@@ -29,6 +29,19 @@
         </ul>
     </div>
 
+    <section>
+        <h2>Posts</h2>
+        <ul>
+          <% oneRedditor.posts.forEach(post => { %>
+          <li>
+            <a href="/posts/<%= onePost._id %>"><%= onePost.title %></a>
+            <span> submitted on: <%= onePost.createdAt %> </span>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+
+
     <%- include('../partials/footer') %>
 
 </body>
