@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <title>Create a Post</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <title>Front Page</title>
+    <%- include('../partials/postStyles') %>
 </head>
 <body>
-    <h1>Create a Post</h1>
+    <%- include('../partials/nav') %>
 
-    <form action="/posts" method="POST">
-        Title: <input type='text' name='title' /><br>
-        Context: <input type='text' name='body' /><br>
-        <input type='submit' value ='Submit Post' />
-    </form>
+    <div class='submitPost'>
+        <h3>Create a Post</h3>
+        <form action="/posts" method="POST" class="form-group">
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Context"></textarea>
+            </div>
+            <div class="text-left">
+                <button type='reset' class="btn btn-primary">RESET</button>
+                <button type="submit" class="btn btn-primary">POST</button>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>

@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <title>Front Page</title>
+    <%- include('../partials/postStyles') %>
 </head>
 <body>
-    <nav>
-        <a href="posts/newpost">Create new post</a>
-    </nav>
-    <h1>Posts</h1>
-
-    <ul>
-        <% for(let i = 0; i < post.length; i++){ %>
-            <li>
-                <a href="/posts/<%= post[i].id %>">
-                    <%= post[i].title %>
-                </a>
-                <form action="<%= post[i].id%>/edit">
-                    <input type="submit" value="EDIT">
-                </form>
-                <form action="/posts/<%= post[i].id %>?_method=DELETE" method="POST">
-                    <input type="submit" value="DELETE">
-                </form>
-            </li>
-        <% } %>
-    </ul>
-
+    <%- include('../partials/nav') %>
+    <div class='submitPost'>
+        <form action="/posts" method="POST" class="form-group">
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Context"></textarea>
+            </div>
+            <div class="text-left"> <button type="submit" class="btn btn-primary">SUBMIT</button> </div>
+        </form>
+    </div>
+    <div class='posts'>
+        <ul>
+            <% for(let i = post.length-1; i >= 0; i--){ %>
+                <li>
+                    <article>
+                        <a href="/posts/<%= post[i].id %>"> <%= post[i].title %> </a>
+                    </article>
+                    <form action="<%= post[i].id%>/edit">
+                        <button type="submit" class="btn btn-link btn-sm pull-left">EDIT</button>
+                    </form>
+                    <form action="/posts/<%= post[i].id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-link btn-sm pull-left">DELETE</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </body>
 </html>
