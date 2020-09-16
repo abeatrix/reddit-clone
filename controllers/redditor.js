@@ -29,7 +29,7 @@ router.get('/:redditorIndex', (req, res) => {
         if(err){
             console.log(err);
         }else{
-            res.render('show.ejs', {
+            res.render('redditor/show', {
                 oneRedditor: oneRedditorFromDB,
         
             });
@@ -76,7 +76,7 @@ router.get('/:i/edit', (req, res) => {
         if(err){
             console.log(err)
         } else{
-            res.render('edit.ejs', {
+            res.render('redditor/edit.ejs', {
                 oneRedditor: oneRedditorFromDB,
             })
         }

@@ -25,5 +25,6 @@ mongoose.connection.on('error', () => {
 
 //EXPORT
 module.exports = {
-    Redditor: require('./Redditor.js')
+    Redditor: require('./Redditor.js'),
+    Post: require("./Post.js")
 }
