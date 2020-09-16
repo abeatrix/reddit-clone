@@ -1,4 +1,4 @@
-# reddit-clone
+# Sharkburg
 A reddit clone using mongoDB
 
 ## Version 0.1
