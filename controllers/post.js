@@ -5,7 +5,7 @@ const db = require('../models');
 
 // NEW ROUTE
 router.get('/newpost',(req, res) => {
-    res.render('posts/newpost');
+    res.render('posts/new');
 });
 
 // CREATE ROUTE
@@ -31,7 +31,7 @@ router.get('/:postIndex', (req, res) => {
         }else{
             res.render('posts/show', {
                 onePost: onePostFromDB,
-        
+
             });
         }
     })
@@ -58,12 +58,12 @@ router.get("/", function (req, res) {
 //DELETE ROUTE
 router.delete('/:i', (req, res) => {
 
-    db.Redditor.findByIdAndDelete(req.params.i, (err, deletedRedditor) => {
+    db.Post.findByIdAndDelete(req.params.i, (err, deletedPost) => {
         if(err){
             console.log(err)
         } else {
-            console.log(deletedRedditor);
-            res.redirect('/redditor');
+            console.log(deletedPost);
+            res.redirect('/posts');
         }
     })
 })
@@ -72,12 +72,12 @@ router.delete('/:i', (req, res) => {
 //EDIT ROUTE
 router.get('/:i/edit', (req, res) => {
 
-    db.Redditor.findById(req.params.i, (err, oneRedditorFromDB) => {
+    db.Post.findById(req.params.i, (err, onePostFromDB) => {
         if(err){
             console.log(err)
         } else{
-            res.render('redditor/edit.ejs', {
-                oneRedditor: oneRedditorFromDB,
+            res.render('posts/edit.ejs', {
+                onePost: onePostFromDB,
             })
         }
     })
@@ -86,12 +86,12 @@ router.get('/:i/edit', (req, res) => {
 // UPDATE ROUTE
 router.put('/:i', (req, res) => {
 
-    db.Redditor.findByIdAndUpdate(req.params.i, req.body, {new: true}, (err, updatedRedditor) => {
+    db.Post.findByIdAndUpdate(req.params.i, req.body, {new: true}, (err, updatedPost) => {
         if(err){
             console.log(err)
         } else {
-            console.log(updatedRedditor);
-            res.redirect(`/redditor/${req.params.i}`);
+            console.log(updatedPost);
+            res.redirect(`/posts/${req.params.i}`);
         }
     })
 })

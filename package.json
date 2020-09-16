@@ -20,9 +20,12 @@
   },
   "homepage": "https://github.com/abeatrix/reddit-clone#readme",
   "dependencies": {
+    "bootstrap": "^4.5.2",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "jquery": "^3.5.1",
     "method-override": "^3.0.0",
-    "mongoose": "^5.10.5"
+    "mongoose": "^5.10.5",
+    "popper": "^1.0.1"
   }
 }
