@@ -8,7 +8,9 @@
     <%- include('../partials/postStyles') %>
 </head>
 <body>
+
     <%- include('../partials/nav') %>
+
     <div class='submitPost'>
         <form action="/posts" method="POST" class="form-group">
             <div class="form-group">
@@ -37,5 +39,8 @@
             <% } %>
         </ul>
     </div>
+
+    <%- include('../partials/footer') %>
+
 </body>
 </html>
