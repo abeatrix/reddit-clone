@@ -29,6 +29,7 @@
                 <li>
                     <article>
                         <a href="/posts/<%= post[i].id %>"> <b><%= post[i].title %></b> </a>
+                        <br><small>Submitted on: <%= post[i].createdAt %></small>
                     </article>
                     <form action="/posts/<%= post[i].id%>/edit">
                         <button type="submit" class="btn btn-link btn-sm pull-left">COMMENTS</button>
