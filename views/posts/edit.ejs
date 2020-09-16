@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <title>Editing <%= onePost.title %> </title>
+    <%- include('../partials/postStyles') %>
 </head>
 <body>
-    <h1><b>Title: </b> <%= onePost.title %> </h1>
-    <div>
+
+    <%- include('../partials/nav') %>
+
+    <div class='submitPost'>
+        <h3><b>Title: </b> <%= onePost.title %> </h3>
         <form action="/posts/<%= onePost._id %>?_method=PUT" method="POST">
-            Context: <input type="text" name="body" value="<%= onePost.body %>"><br>
-            <input type="submit" value="Submit Changes">
+            <div class="form-group">
+                <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="10" placeholder="<%= onePost.body %>"></textarea>
+            </div>
+            <div class="text-left"> <button type="reset" class="btn btn-primary">RESET</button> <button type="submit" class="btn btn-primary">Submit Changes</button> </div>
         </form>
     </div>
+
+    <%- include('../partials/footer') %>
+
 </body>
 </html>
