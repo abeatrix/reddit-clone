@@ -23,3 +23,5 @@ const redditorSchema = new mongoose.Schema(
 const Redditor = mongoose.model('Redditor', redditorSchema);
 
 module.exports = Redditor;
+
+// git stuff
